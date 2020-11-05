@@ -1,0 +1,5 @@
+*.pyc
+app/testclient/.pytest_cache/
+*.log
+app/tests/.pytest_cache/
+app/.pytest_cache/

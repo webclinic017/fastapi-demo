@@ -1,0 +1,33 @@
+{
+  "USED":"debug",
+  "debug": {
+      "logger": {
+      "filename": "server.log",
+      "level": "error",
+      "rotation": "20 days",
+      "retention": "1 months",
+      "format": "<level>{level: <8}</level> <green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> request id: {extra[request_id]} - <cyan>{name}</cyan>:<cyan>{function}</cyan> - <level>{message}</level>"
+    },
+    "env": {
+      "DATABASE_URL": "postgresql://mzm:123@127.0.0.1:54321/mzm",
+      "TIME": "True",
+      "CACHE_REDIS_HOST":"127.0.0.1",
+      "CACHE_REDIS_PORT":"9003",
+      "CACHE_REDIS_DB":"1",
+      "CACHE_REDIS_PASSWORD":"123"
+    }
+  },
+  "pro":{
+     "logger": {
+      "filename": "server.log",
+      "level": "error",
+      "rotation": "20 days",
+      "retention": "1 months",
+      "format": "<level>{level: <8}</level> <green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> request id: {extra[request_id]} - <cyan>{name}</cyan>:<cyan>{function}</cyan> - <level>{message}</level>"
+    },
+    "env": {
+      "DATABASE_URL": "postgresql://postgres:123@127.0.0.1:54321/test",
+      "TIME": "True"
+    }
+  }
+}
