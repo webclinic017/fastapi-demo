@@ -3,8 +3,8 @@
 
 from fastapi import FastAPI
 import logging
-from .core.fs_logging import CustomizeLogger
-from .config.config import fs_config
+from app.core.fs_logging import CustomizeLogger
+from app.config.config import fs_config
 from app.db import database #SessionLocal
 #from app.celery.work import celery
 

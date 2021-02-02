@@ -9,7 +9,7 @@
       "format": "<level>{level: <8}</level> <green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> request id: {extra[request_id]} - <cyan>{name}</cyan>:<cyan>{function}</cyan> - <level>{message}</level>"
     },
     "env": {
-      "DATABASE_URL": "postgresql://mzm:123@127.0.0.1:54321/mzm",
+      "DATABASE_URL": "postgresql://greenvalley:greenvalley_postgis@192.168.10.156:54322/lntest",
       "TIME": "True",
       "CACHE_REDIS_HOST":"127.0.0.1",
       "CACHE_REDIS_PORT":"9003",

@@ -32,8 +32,9 @@ if __name__ =="__main__":
     #建表时注释__init__.py里边的以下两行
     #DATABASE_URL = os.environ.get("DATABASE_URL")
     #database = Database(DATABASE_URL)
-
-    DATABASE_URL = "postgresql://postgres:123@127.0.0.1:5432/test"
+    # 新建数据库操作
+    #pgadmin 新建数据库，编码选择utf-8,模板选择template0
+    DATABASE_URL = "postgresql://greenvalley:greenvalley_postgis@192.168.10.156:54322/lntest"
     engine = sqlalchemy.create_engine(
         DATABASE_URL, #connect_args={"check_same_thread": False}
     )

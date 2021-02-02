@@ -1,0 +1,1 @@
+D:\Python36-sim\python.exe setup.py develop
