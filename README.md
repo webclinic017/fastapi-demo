@@ -6,7 +6,14 @@ fastapi tutorial and demo
 python>=3.6
 
 # runserver
-*1.use python*
+0.setup
+
+```
+#利用python执行setup.py
+python setup.py
+```
+
+*1.use python run server*
 
 ```buildoutcfg
 python runserver.py
@@ -14,7 +21,8 @@ python runserver.py
 
 浏览器打开 http://127.0.0.1:8091/docs
 
-*2.use uvicorn* 
+*2.use uvicorn run server*  
+
 ```buildoutcfg
 cd ./app
 uvicorn main.app --host 0.0.0.0 --port 8091 --reload
@@ -46,11 +54,9 @@ pytest进行接口的单元测试，分为以下两种：
 1.基于testClient进行启动服务测试  
 2.用request模拟请求进行接口测试
 
-
-
 # depoly
 
-* windows
+* **windows**
 
   * 执行setup.bat，指定源码包（修改setup.bat里边的python路径）
 
@@ -62,7 +68,7 @@ pytest进行接口的单元测试，分为以下两种：
 
   ​	此时为单进程运行，稳定性较差
 
-  * gunicorn
+  * ~~gunicorn~~
 
      *** windows测试未通过，由于gunicorn暂时不支持windows
 
@@ -71,7 +77,6 @@ pytest进行接口的单元测试，分为以下两种：
     pip install gunicorn
     #启动服务,开启守护进程
     D:\Python36-sim\Scripts\gunicorn main:app -b 0.0.0.0:8091  -w 4 -k uvicorn.workers.UvicornH11Worker --daemon  
-    
     ```
 
   * circusd
@@ -89,17 +94,15 @@ pytest进行接口的单元测试，分为以下两种：
     [socket:web]
     host = 0.0.0.0
     port = 8092
-    
     ```
 
-    * 启动
+    * circus启动
 
       ```
       D:\Python36-sim\Scripts\circusd.exe circus.ini
       
       ** 注意，windows上运行需要修改uvicorn的源码：
       查看uvicorn的安装目录，如d:\python36-sim\lib\site-packages\uvicorn，打开其中main.py，将其中socket.AF_UNIX修改成AF_INET
-      
           # Use an existing socket, from a file descriptor.
           sock = socket.fromfd(config.fd, socket.AF_UNIX, socket.SOCK_STREAM)
           server = await loop.create_server(
@@ -112,17 +115,17 @@ pytest进行接口的单元测试，分为以下两种：
 
       
 
-* docker
+* **docker**
 
   ```
   #编译镜像
   cd fastapi-demo
-  #利用depoly里边的Dockerfile进行构建镜像
+  #利用depoly里边的Dockerfile进行构建镜像，具体参考Dock
   #*Dockerfile里边的目录是相对于当前命令行的，而不是Dockerfile文件的
   sudo docker build -t fastapi-demo -f ./depoly/Dockerfile .
   
   #启动容器
-   sudo docker run -d --restart=always --name fastapi-demo -v /home/xyz/liearth/docker/fastapi_demo/server:/app -p 9071:80 fastapi-demo
+   sudo docker run -d --restart=always --name fastapi-demo -v /home/xyz/liearth/docker/fastapi_demo:/app -p 9071:80 fastapi-demo
   
   #具体参考https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker
   
