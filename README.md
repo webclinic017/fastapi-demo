@@ -46,8 +46,12 @@ celery -A task.tasks worker -l info --logfile=w1.log
 ```
 
 *todo:*  
-windows启动 **待验证**  
-celery.exe -A  task.tasks worker -l info  -P eventlet
+windows启动,由于celery4.0以上版本  
+```buildoutcfg
+pip install eventlet
+celery.exe -A  app.task.tasks worker -l info  -P eventlet --logfile=w1.log
+```
+
 
 # test
 pytest进行接口的单元测试，分为以下两种：  
