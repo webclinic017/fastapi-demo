@@ -42,13 +42,12 @@ from fastapi.responses import HTMLResponse
 socker_router = get_router()
 
 @socker_router.get("/socket")
+#在浏览器中打开测试
+# http://127.0.0.1:8091/socket
 async def get():
     return HTMLResponse(html)
 
 
-'''
-not work
-'''
 # @socker_router.websocket("/ws/{client_id}")
 # async def websocket_endpoint(websocket: WebSocket, client_id: int):
 #     await manager.connect(websocket)

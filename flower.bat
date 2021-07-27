@@ -1,0 +1,2 @@
+D:\Python36-sim\Scripts\celery.exe -A app.task.tasks --broker=redis://auth:greenvalley@localhost:63790/12  flower  --port=9201 --persistent=True --auto_refresh=True --db=flower.db --state_save_interval=5
+pause

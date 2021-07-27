@@ -21,6 +21,7 @@ async def create_item(item: Item):
 
 @task_router.get("/check_task/{id}")
 def check_task(id: str):
+    ins = celery.control.inspect()
     task = celery.AsyncResult(id)
     if task.state == 'SUCCESS':
         response = {

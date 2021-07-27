@@ -9,12 +9,12 @@
       "format": "<level>{level: <8}</level> <green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> request id: {extra[request_id]} - <cyan>{name}</cyan>:<cyan>{function}</cyan> - <level>{message}</level>"
     },
     "env": {
-      "DATABASE_URL": "postgresql://mzm:123@127.0.0.1:54321/mzm",
+      "DATABASE_URL": "postgresql://postgres:123@127.0.0.1:5432/test",
       "TIME": "True",
       "CACHE_REDIS_HOST":"127.0.0.1",
-      "CACHE_REDIS_PORT":"9003",
+      "CACHE_REDIS_PORT":"63790",
       "CACHE_REDIS_DB":"1",
-      "CACHE_REDIS_PASSWORD":"123"
+      "CACHE_REDIS_PASSWORD":"greenvalley"
     }
   },
   "pro":{
