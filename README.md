@@ -49,7 +49,11 @@ celery -A task.tasks worker -l info --logfile=w1.log
 windows启动,由于celery4.0以上版本  
 ```buildoutcfg
 pip install eventlet
-celery.exe -A  app.task.tasks worker -l info  -P eventlet --logfile=w1.log
+"celery_path\celery.exe" -A app.task.tasks worker -l info -P eventlet --logfile=w1.log -n worker1
+ 
+【注意】   
+（1）当关闭一个worker时，任务可以到另一个worker上，前提是新任务，旧任务随着worker一起结束；     
+（2）如果worker正常启动，fastapi任务提示pending,可以重启fastapi服务
 ```
 
 
@@ -134,8 +138,34 @@ pytest进行接口的单元测试，分为以下两种：
   #具体参考https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker
   
   ```
-
   
+**增加flower监控**  
+
+pip install flower
+  
+* 启动flower  
+windows：需要在执行目录下放一个配置文件flowerconfig.py，内容如下：
+```
+import asyncio
+import sys
+
+if sys.platform == 'win32':
+    #python36
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    # python38
+    # asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+```
+
+```
+启动命令
+"celery_path\celery.exe" -A app.task.tasks --broker=redis://auth:greenvalley@localhost:63790/12  flower  --port=9201 --persistent=True --auto_refresh=True --auto_refresh=True --db=flower.db --state_save_interval=5
+
+参数说明:
+broker:对应celery配置  
+port：端口  
+persistent：数据持久化，保存历史  
+```
 
 
 
