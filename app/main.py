@@ -18,8 +18,8 @@ from app.api.user.user import user_router
 from app.api.socket.test import socker_router
 from app.api.test.test_tasks import task_router
 
-from fastapi_cache import FastAPICache
-from fastapi_cache.backends.redis import RedisBackend
+#from fastapi_cache import FastAPICache
+#from fastapi_cache.backends.redis import RedisBackend
 
 from app.api.files.files import files_router
 import aioredis
@@ -55,8 +55,8 @@ from fastapi import WebSocket,WebSocketDisconnect
 from app.core.fs_socket import manager
 
 from starlette.staticfiles import StaticFiles
-path = r'F:/02_data/test'
-app.mount("/static", StaticFiles(directory=path,html = True), name="static")
+# path = r'F:/02_data/test'
+# app.mount("/static", StaticFiles(directory=path,html = True), name="static")
 
 @app.websocket("/ws/{client_id}")
 async def websocket_endpoint(websocket: WebSocket, client_id: int):
@@ -80,8 +80,8 @@ async def websocket_endpoint(websocket: WebSocket, client_id: int):
 @app.on_event("startup")
 async def startup():
     await database.connect()
-    redis = await aioredis.create_redis_pool("redis://auth:greenvalley@127.0.0.1:63790/2",encoding="utf8")
-    FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
+    #redis = await aioredis.create_redis_pool("redis://auth:greenvalley@127.0.0.1:63790/2",encoding="utf8")
+    #FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
 
 
 # 服务关闭事件
@@ -89,6 +89,6 @@ async def startup():
 async def shutdown():
     print('close')
     await database.disconnect()
-    FastAPICache.get_backend().close()
-    await  FastAPICache.get_backend().wait_closed()
+    #FastAPICache.get_backend().close()
+    #await  FastAPICache.get_backend().wait_closed()
 

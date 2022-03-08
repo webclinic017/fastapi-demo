@@ -25,7 +25,7 @@ from sqlalchemy import Column, String, Integer
 #     state = Column(String(2))
 
 
-users = sqlalchemy.Table(
+Users = sqlalchemy.Table(
     "test_users",
     metadata,
     sqlalchemy.Column("id", sqlalchemy.Integer, primary_key=True),

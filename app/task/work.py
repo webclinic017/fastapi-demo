@@ -9,11 +9,13 @@ def create_celery():
     CACHE_REDIS_PASSWORD = os.environ.get('CACHE_REDIS_PASSWORD') or 'greenvalley'
 
     # 'redis://auth:password@redishost:6379/0'
+
+    # broker设置为redis或ampq才能发送revoked消息
     CELERY_BROKER_URL = 'redis://auth:%s@%s:%s/12' % (CACHE_REDIS_PASSWORD, CACHE_REDIS_HOST, CACHE_REDIS_PORT,)
     CELERY_RESULT_BACKEND = 'redis://auth:%s@%s:%s/13' % (CACHE_REDIS_PASSWORD, CACHE_REDIS_HOST, CACHE_REDIS_PORT,)
 
     #测试结果存到数据库中
-    CELERY_RESULT_BACKEND = 'db+postgresql://postgres:123@127.0.0.1:5432/test'
+    #CELERY_RESULT_BACKEND = 'db+postgresql://postgres:123@127.0.0.1:5432/test'
 
     celery = Celery("celery", backend=CELERY_RESULT_BACKEND, broker=CELERY_BROKER_URL)
     return celery
